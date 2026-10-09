@@ -1,0 +1,592 @@
+        <!DOCTYPE html>
+        <html lang="mn">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Хөвсгөл Политехник Коллеж</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+          :root{
+            --navy:#1B2A6B;
+            --navy-deep:#121d4d;
+            --red:#C8262A;
+            --green:#1F6B3E;
+            --green-deep:#164f2e;
+            --cream:#F6F4EC;
+            --paper:#FFFFFF;
+            --ink:#181A20;
+            --ink-soft:#4A4E5A;
+            --line:#DEDAC9;
+          }
+          :root:not([data-theme="light"]){
+          }
+          @media (prefers-color-scheme: dark){
+            :root:not([data-theme="light"]){
+              --cream:#14161C;
+              --paper:#1B1E27;
+              --ink:#EDEBE3;
+              --ink-soft:#B4B7C2;
+              --line:#333747;
+            }
+          }
+          :root[data-theme="dark"]{
+            --cream:#14161C;
+            --paper:#1B1E27;
+            --ink:#EDEBE3;
+            --ink-soft:#B4B7C2;
+            --line:#333747;
+          }
+
+          *{box-sizing:border-box;}
+          html{scroll-behavior:smooth;}
+          body{
+            margin:0;
+            background:var(--cream);
+            color:var(--ink);
+            font-family:'PT Sans', sans-serif;
+            line-height:1.55;
+            -webkit-font-smoothing:antialiased;
+          }
+          h1,h2,h3{
+            font-family:'PT Serif', serif;
+            color:var(--navy);
+            margin:0;
+            font-weight:700;
+            letter-spacing:-0.01em;
+          }
+          :root[data-theme="dark"] h1, :root[data-theme="dark"] h2, :root[data-theme="dark"] h3{ color:#EDEBE3; }
+          @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) h1, :root:not([data-theme="light"]) h2, :root:not([data-theme="light"]) h3{ color:#EDEBE3; } }
+          p{color:var(--ink-soft); max-width:62ch;}
+          a{color:inherit;}
+          img{max-width:100%; display:block;}
+          .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+          :focus-visible{outline:3px solid var(--red); outline-offset:3px;}
+
+          /* ---------- Header ---------- */
+          header{
+            position:sticky; top:0; z-index:50;
+            background:var(--paper);
+            border-bottom:1px solid var(--line);
+          }
+          .nav{
+            display:flex; align-items:center; justify-content:space-between;
+            padding:14px 28px;
+          }
+          .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+          .brand img{height:46px; width:auto;}
+          .brand-text{font-family:'PT Serif', serif; font-weight:700; color:var(--navy); line-height:1.15; font-size:16px;}
+          :root[data-theme="dark"] .brand-text{color:#EDEBE3;}
+          @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .brand-text{color:#EDEBE3;} }
+          .brand-text span{display:block; font-family:'PT Sans',sans-serif; font-weight:400; font-size:11.5px; color:var(--ink-soft); letter-spacing:0.02em;}
+          .nav-cta{
+            background:var(--red); color:#fff; text-decoration:none; font-weight:700;
+            padding:10px 20px; font-size:14.5px; white-space:nowrap;
+          }
+          .nav-cta:hover{background:#a91f22;}
+
+          /* single horizontal nav bar, visible immediately on every screen size */
+          .quicknav-wrap{border-top:1px solid var(--line);}
+          .quicknav{
+            display:flex; align-items:center;
+            overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+          }
+          .quicknav::-webkit-scrollbar{display:none;}
+          .quicknav a{
+            flex:0 0 auto; text-decoration:none; color:var(--navy); font-weight:700;
+            font-size:12.5px; letter-spacing:0.02em; text-transform:uppercase;
+            padding:13px 15px; white-space:nowrap; border-bottom:2px solid transparent;
+          }
+          :root[data-theme="dark"] .quicknav a{color:#EDEBE3;}
+          @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .quicknav a{color:#EDEBE3;} }
+          .quicknav a:hover, .quicknav a:active{border-bottom-color:var(--red); color:var(--red);}
+          .quicknav a.qn-home{font-size:17px; padding:12px 16px; text-transform:none;}
+
+          /* ---------- Hero ---------- */
+          .hero{
+            position:relative;
+            background:var(--navy);
+            color:#fff;
+            overflow:hidden;
+          }
+          .hero::before{
+            content:"";
+            position:absolute; inset:0;
+            background:
+              linear-gradient(115deg, var(--navy-deep) 0%, var(--navy) 46%, var(--green-deep) 100%);
+            opacity:0.97;
+          }
+          .hero-ribbon{
+            position:absolute; right:-120px; top:-80px; width:520px; height:520px;
+            border:3px solid rgba(255,255,255,0.08);
+            border-radius:50%;
+            pointer-events:none;
+          }
+          .hero-ribbon.b{right:-40px; top:60px; width:340px; height:340px; border-color:rgba(255,255,255,0.06);}
+          .hero-inner{
+            position:relative; z-index:2;
+            padding:88px 28px 96px;
+            max-width:760px;
+          }
+          .hero-eyebrow{
+            font-size:14px; letter-spacing:0.04em; color:#CFE0D6; font-weight:700; margin-bottom:18px;
+          }
+          .hero h1{
+            color:#fff; font-size:clamp(32px,4.4vw,52px); line-height:1.12; max-width:14ch;
+          }
+          .hero h1 em{font-style:normal; color:#F3C94B;}
+          .hero p.lede{
+            color:#DCE1EE; font-size:18px; max-width:46ch; margin-top:20px;
+          }
+          .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+          .btn{
+            display:inline-block; text-decoration:none; font-weight:700; font-size:15px;
+            padding:14px 26px; border:2px solid transparent;
+          }
+          .btn-primary{background:var(--red); color:#fff;}
+          .btn-primary:hover{background:#a91f22;}
+          .btn-ghost{border-color:rgba(255,255,255,0.5); color:#fff;}
+          .btn-ghost:hover{border-color:#fff; background:rgba(255,255,255,0.08);}
+          .hero-facts{
+            display:flex; gap:34px; margin-top:48px; flex-wrap:wrap;
+          }
+          .fact b{display:block; font-family:'PT Serif',serif; font-size:30px; color:#fff;}
+          .fact span{font-size:13.5px; color:#B9C2D6;}
+
+          /* ---------- Section shell ---------- */
+          section{padding:84px 0;}
+          .kicker{
+            display:inline-block; font-weight:700; color:var(--red); font-size:14px; margin-bottom:12px;
+          }
+          .section-head{max-width:640px; margin-bottom:48px;}
+          .section-head h2{font-size:clamp(26px,3vw,36px); line-height:1.2;}
+
+          /* ---------- About (asymmetric) ---------- */
+          .about{
+            display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;
+          }
+          .about-copy p{margin:0 0 16px;}
+          .pillars{
+            border-top:1px solid var(--line);
+            margin-top:28px;
+          }
+          .pillar{
+            display:grid; grid-template-columns:52px 1fr; gap:16px;
+            padding:20px 0; border-bottom:1px solid var(--line);
+          }
+          .pillar-icon{
+            width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+            background:var(--cream);
+          }
+          .pillar-icon svg{width:24px; height:24px;}
+          .pillar h3{font-size:17px; margin-bottom:4px;}
+          .pillar p{font-size:14.5px; margin:0;}
+
+          .about-panel{
+            background:var(--paper); border:1px solid var(--line); padding:34px;
+          }
+          .about-panel h3{font-size:19px; margin-bottom:18px;}
+          .stat-row{
+            display:flex; justify-content:space-between; align-items:baseline;
+            padding:14px 0; border-bottom:1px dashed var(--line);
+          }
+          .stat-row:last-child{border-bottom:none;}
+          .stat-row b{font-family:'PT Serif',serif; font-size:24px; color:var(--green);}
+          .stat-row span{font-size:14px; color:var(--ink-soft); text-align:right; max-width:60%;}
+
+          /* ---------- Programs ---------- */
+          .programs-band{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+          .program-grid{
+            display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+            background:var(--line);
+            border:1px solid var(--line);
+          }
+          .program-card{
+            background:var(--paper); padding:30px 26px 32px;
+            border-top:4px solid var(--navy);
+          }
+          .program-card.c-green{border-top-color:var(--green);}
+          .program-card.c-red{border-top-color:var(--red);}
+          .program-card h3{font-size:18px; margin-bottom:10px;}
+          .program-card p{font-size:14.5px; margin:0 0 14px;}
+          .program-card .dur{
+            font-size:13px; font-weight:700; color:var(--ink-soft);
+          }
+
+          /* ---------- Life / gallery-ish strip ---------- */
+          .strip{
+            display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
+          }
+          .strip-visual{
+            background:var(--green); color:#fff; padding:44px 36px; position:relative; overflow:hidden;
+          }
+          .strip-visual::after{
+            content:""; position:absolute; right:-60px; bottom:-60px; width:220px; height:220px;
+            border:2px solid rgba(255,255,255,0.18); border-radius:50%;
+          }
+          .strip-visual h3{color:#fff; font-size:26px; max-width:12ch; position:relative; z-index:1;}
+          .strip-visual p{color:#DDEEDF; margin-top:14px; position:relative; z-index:1;}
+          .quote{
+            margin-top:26px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.25); position:relative; z-index:1;
+          }
+          .quote p{color:#fff; font-family:'PT Serif',serif; font-size:16.5px; font-style:normal;}
+          .quote span{display:block; margin-top:8px; font-size:13px; color:#CFE9D6;}
+
+          .strip-list{list-style:none; margin:0; padding:0;}
+          .strip-list li{
+            display:grid; grid-template-columns:28px 1fr; gap:14px;
+            padding:16px 0; border-bottom:1px solid var(--line);
+          }
+          .strip-list li:first-child{padding-top:0;}
+          .strip-list b{font-family:'PT Serif',serif; color:var(--red); font-size:17px;}
+          .strip-list p{margin:0; font-size:14.5px;}
+          .strip-list h4{margin:0 0 4px; font-size:15.5px; color:var(--ink); font-family:'PT Sans',sans-serif; font-weight:700;}
+
+          /* ---------- News ---------- */
+          .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+          .news-card{background:var(--paper); border:1px solid var(--line);}
+          .news-card .tag{
+            display:inline-block; margin:22px 0 0 22px; font-size:12.5px; font-weight:700; color:var(--navy);
+            background:var(--cream); padding:4px 10px;
+          }
+          .news-card h3{font-size:17px; margin:14px 22px 0; line-height:1.3;}
+          .news-card p{font-size:14px; margin:10px 22px 22px;}
+          .news-card .date{font-size:12.5px; color:var(--ink-soft); margin:0 22px 20px; display:block;}
+
+          /* ---------- CTA band ---------- */
+          .cta-band{
+            background:var(--navy); color:#fff; text-align:center; padding:70px 28px;
+          }
+          .cta-band h2{color:#fff; font-size:clamp(24px,3.4vw,34px); max-width:20ch; margin:0 auto 16px;}
+          .cta-band p{color:#CBD3E6; max-width:52ch; margin:0 auto 30px;}
+          .cta-band .btn-primary{margin:0 8px;}
+
+          /* ---------- Contact ---------- */
+          .contact{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+          .contact-info dl{margin:0;}
+          .contact-info dt{font-weight:700; font-size:13px; color:var(--red); margin-top:22px; letter-spacing:0.01em;}
+          .contact-info dt:first-child{margin-top:0;}
+          .contact-info dd{margin:6px 0 0; font-size:15.5px; color:var(--ink);}
+          .contact-form{background:var(--paper); border:1px solid var(--line); padding:32px;}
+          .field{margin-bottom:18px;}
+          .field label{display:block; font-size:13.5px; font-weight:700; margin-bottom:7px;}
+          .field input, .field textarea{
+            width:100%; border:1px solid var(--line); background:var(--cream); padding:12px 14px;
+            font-family:'PT Sans',sans-serif; font-size:14.5px; color:var(--ink);
+          }
+          .field textarea{min-height:100px; resize:vertical;}
+          .contact-form button{
+            background:var(--red); color:#fff; border:none; padding:14px 26px; font-weight:700; font-size:15px; cursor:pointer;
+          }
+          .contact-form button:hover{background:#a91f22;}
+
+          /* ---------- Footer ---------- */
+          footer{background:var(--navy-deep); color:#B9C2D6; padding:52px 0 30px;}
+          .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px;}
+          .foot-brand{display:flex; gap:12px; align-items:center; margin-bottom:14px;}
+          .foot-brand img{height:40px;}
+          .foot-brand span{font-family:'PT Serif',serif; color:#fff; font-size:15.5px;}
+          footer h4{color:#fff; font-size:14px; margin:0 0 14px; font-family:'PT Sans',sans-serif;}
+          footer ul{list-style:none; margin:0; padding:0;}
+          footer li{margin-bottom:9px; font-size:14px;}
+          footer a{text-decoration:none; color:#B9C2D6;}
+          footer a:hover{color:#fff;}
+          .foot-bottom{
+            max-width:1120px; margin:40px auto 0; padding:22px 28px 0; border-top:1px solid rgba(255,255,255,0.1);
+            font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+          }
+
+          /* ---------- Responsive ---------- */
+          @media (max-width:900px){
+            .hero-inner{padding-top:56px;}
+            .about, .strip, .contact{grid-template-columns:1fr; gap:40px;}
+            .program-grid{grid-template-columns:1fr;}
+            .news-grid{grid-template-columns:1fr;}
+            .student-grid{grid-template-columns:1fr;}
+            .foot-grid{grid-template-columns:1fr 1fr; row-gap:30px;}
+          }
+          @media (max-width:520px){
+            .hero-facts{gap:22px;}
+            .foot-grid{grid-template-columns:1fr;}
+          }
+        </style>
+        </head>
+        <body>
+
+        <header>
+          <div class="nav">
+            <a class="brand" href="#top">
+              <img src="logo.jpg" alt="Хөвсгөл Политехник Коллежийн лого">
+              <span class="brand-text">Хөвсгөл Политехник Коллеж<span>Байгуулагдсан 1973 он · ОНООС</span></span>
+            </a>
+            <a class="nav-cta" href="#holboo">Элсэлт</a>
+          </div>
+          <div class="quicknav-wrap">
+            <nav class="quicknav wrap" aria-label="Үндсэн цэс">
+              <a href="#top" class="qn-home" aria-label="Нүүр хуудас">⌂</a>
+              <a href="#tuhai">Бидний тухай</a>
+              <a href="#mergejil">Мэргэжлүүд</a>
+              <a href="#amidral">Сургалтын орчин</a>
+              <a href="#suragch">Суралцагч</a>
+              <a href="#medee">Мэдээ</a>
+              <a href="#holboo">Холбоо барих</a>
+            </nav>
+          </div>
+        </header>
+
+        <section class="hero" id="top">
+          <div class="hero-ribbon"></div>
+          <div class="hero-ribbon b"></div>
+          <div class="wrap hero-inner">
+            <div>
+              <div class="hero-eyebrow">Хөвсгөл аймаг · Мөрөн хот · 1973 оноос хойш</div>
+              <h1>Гар урлал төдийгүй <em>ирээдүйн</em> мэргэжил заадаг коллеж</h1>
+              <p class="lede">Тайгын нутгийн дунд байгуулагдсан бид тавин гаруй жилийн турш барилга, эрчим хүч, механик, мэдээллийн технологийн мэргэжилтнүүдийг бэлтгэж ирсэн.</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#holboo">Элсэлтийн мэдээлэл авах</a>
+                <a class="btn btn-ghost" href="#mergejil">Мэргэжлүүдийг үзэх</a>
+              </div>
+              <div class="hero-facts">
+                <div class="fact"><b>1973</b><span>байгуулагдсан он</span></div>
+                <div class="fact"><b>12+</b><span>мэргэжлийн чиглэл</span></div>
+                <div class="fact"><b>50 жил</b><span>боловсролын түүх</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tuhai">
+          <div class="wrap about">
+            <div class="about-copy">
+              <span class="kicker">Бидний тухай</span>
+              <h2>Хойд нутгийн мэргэжлийн боловсролын тулгуур газар</h2>
+              <p>Хөвсгөл Политехник Коллеж нь орон нутгийн эдийн засаг, аж үйлдвэрт шаардлагатай ур чадвартай ажилчин, техникч бэлтгэх зорилготойгоор ажилладаг мэргэжлийн боловсролын байгууллага юм. Лого дахь шилмүүст ойн дүрс нь Хөвсгөлийн байгальтай холбоотой суурь үнэт зүйлсийг, номын дүрс нь мэдлэгийг илэрхийлдэг.</p>
+              <p>Онолын мэдлэгийг дадлагажуулах орчинтой хослуулан, оюутан бүрийг ажлын байранд бэлэн мэргэжилтэн болгон төгсгөхийг зорьдог.</p>
+              <div class="pillars">
+                <div class="pillar">
+                  <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A6B" stroke-width="1.8"><path d="M4 19V6a2 2 0 012-2h8l6 6v9a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M14 4v5h5"/></svg></div>
+                  <div><h3>Онолын бат суурь</h3><p>Мэргэжлийн стандартад нийцсэн хөтөлбөрөөр суурь мэдлэг олгоно.</p></div>
+                </div>
+                <div class="pillar">
+                  <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B3E" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-3-3a1 1 0 011.4-1.4L6 13.6l7.3-7.3a1 1 0 011.4 0z"/><path d="M20 4l-3 3M22 6l-3 3" stroke-linecap="round"/></svg></div>
+                  <div><h3>Дадлага, ур чадвар</h3><p>Гар урлал, тоног төхөөрөмж дээр ажиллаж бодит ур чадвар эзэмшинэ.</p></div>
+                </div>
+                <div class="pillar">
+                  <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8262A" stroke-width="1.8"><path d="M12 2l3 6 6 1-4.5 4.3L17.5 20 12 17l-5.5 3 1-6.7L3 9l6-1z"/></svg></div>
+                  <div><h3>Ажлын байрны баталгаа</h3><p>Орон нутгийн аж ахуйн нэгжүүдтэй хамтран дадлага, ажлын байрыг зохион байгуулдаг.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="about-panel">
+              <h3>Коллежийг тоогоор</h3>
+              <div class="stat-row"><b>1973</b><span>байгуулагдсан он</span></div>
+              <div class="stat-row"><b>12+</b><span>идэвхтэй мэргэжлийн хөтөлбөр</span></div>
+              <div class="stat-row"><b>90%</b><span>төгсөгчдийн ажлын байртай холбогдох хувь</span></div>
+              <div class="stat-row"><b>50 жил</b><span>тасралтгүй сургалтын түүх</span></div>
+              <div class="stat-row"><b>Мөрөн</b><span>сургалтын төв байршил</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="programs-band" id="mergejil">
+          <div class="wrap" style="padding:84px 28px;">
+            <div class="section-head">
+              <span class="kicker">Мэргэжлийн чиглэлүүд</span>
+              <h2>Аж үйлдвэр, барилга, техникийн мэргэжлээр сургана</h2>
+            </div>
+          </div>
+          <div class="wrap" style="padding-bottom:84px;">
+            <div class="program-grid">
+              <div class="program-card">
+                <h3>Барилгын байгууламжийн ашиглалт</h3>
+                <p>Барилгын засвар, арчлалт, дулаан хангамжийн системийн мэргэжилтэн бэлтгэнэ.</p>
+                <span class="dur">2 жилийн хөтөлбөр</span>
+              </div>
+              <div class="program-card c-green">
+                <h3>Эрчим хүч, цахилгаанжуулалт</h3>
+                <p>Цахилгаан тоног төхөөрөмжийн угсралт, засвар үйлчилгээний ур чадвар олгоно.</p>
+                <span class="dur">2 жилийн хөтөлбөр</span>
+              </div>
+              <div class="program-card c-red">
+                <h3>Мэдээллийн технологи</h3>
+                <p>Программ хангамж, сүлжээ, техник хангамжийн үндсэн мэргэжил эзэмшинэ.</p>
+                <span class="dur">2 жилийн хөтөлбөр</span>
+              </div>
+              <div class="program-card c-red">
+                <h3>Механикч, тээврийн хэрэгслийн засвар</h3>
+                <p>Дотоод шаталтат хөдөлгүүр, тээврийн хэрэгслийн оношилгоо, засварын дадлага.</p>
+                <span class="dur">1.5 жилийн хөтөлбөр</span>
+              </div>
+              <div class="program-card">
+                <h3>Мод боловсруулах технологи</h3>
+                <p>Хөвсгөлийн ойн баялгийг тогтвортой ашиглах, мод боловсруулах ур чадвар.</p>
+                <span class="dur">1.5 жилийн хөтөлбөр</span>
+              </div>
+              <div class="program-card c-green">
+                <h3>Хүнс, үйлчилгээний технологи</h3>
+                <p>Хүнсний үйлдвэрлэл, зоогийн газрын үйл ажиллагааны мэргэжил олгоно.</p>
+                <span class="dur">1 жилийн хөтөлбөр</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="amidral">
+          <div class="wrap strip">
+            <ul class="strip-list">
+              <li><b>01</b><div><h4>Дадлагын семинар</h4><p>Оюутнууд жил бүр орон нутгийн үйлдвэрүүд дээр гэрээт дадлага хийдэг.</p></div></li>
+              <li><b>02</b><div><h4>Мэргэжлийн уралдаан</h4><p>Улсын хэмжээний ур чадварын уралдаанд тогтмол оролцож шагнал хүртдэг.</p></div></li>
+              <li><b>03</b><div><h4>Дотуур байр, номын сан</h4><p>Алслагдсан суманд амьдардаг оюутнуудад дотуур байрны нөхцөл бүрдүүлдэг.</p></div></li>
+              <li><b>04</b><div><h4>Төгсөгчдийн холбоо</h4><p>Ажлын байр зуучлах, ур чадвар дээшлүүлэх сургалтад тогтмол урьдаг.</p></div></li>
+            </ul>
+            <div class="strip-visual">
+              <h3>Хөвсгөлийн байгальтай зэрэгцэн суралцах</h3>
+              <p>Лого дахь шилмүүст мод бидний нутгийн онцлог, номын дүрс мэдлэгт хандах хандлагыг тэмдэглэдэг.</p>
+              <div class="quote">
+                <p>«1973 оноос хойш бид энэ нутагт мэргэжлийн боловсролыг тасралтгүй хөгжүүлж ирлээ.»</p>
+                <span>— Коллежийн удирдлага</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="suragch">
+          <div class="wrap">
+            <div class="section-head">
+              <span class="kicker">Суралцагч</span>
+              <h2>Оюутанд зориулсан дэмжлэг, боломжууд</h2>
+            </div>
+            <div class="program-grid student-grid">
+              <div class="program-card">
+                <h3>Тэтгэлэг, санхүүгийн дэмжлэг</h3>
+                <p>Сурлагын өндөр амжилт үзүүлсэн болон зорилтот бүлгийн оюутнуудад тэтгэлэг олгодог.</p>
+              </div>
+              <div class="program-card c-green">
+                <h3>Дотуур байр</h3>
+                <p>Алслагдсан сумдаас ирсэн оюутнуудад дотуур байрны нөхцөл, хоолны үйлчилгээ бүрдүүлдэг.</p>
+              </div>
+              <div class="program-card c-red">
+                <h3>Клуб, дугуйлан</h3>
+                <p>Спорт, урлаг, мэргэжлийн клубуудад хамрагдаж сурлагаас гадуур хөгжих боломжтой.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta-band">
+          <div class="wrap" style="padding:0;">
+            <h2>2026-2027 оны хичээлийн жилийн элсэлт эхэллээ</h2>
+            <p>Мэргэжлээ сонгож, өргөдлөө өнөөдөр илгээгээрэй. Элсэлтийн комисс танд туслахад бэлэн байна.</p>
+            <a class="btn btn-primary" href="#holboo">Өргөдөл гаргах</a>
+            <a class="btn btn-ghost" href="#mergejil">Хөтөлбөрүүдийг харах</a>
+          </div>
+        </section>
+
+        <section id="medee">
+          <div class="wrap">
+            <div class="section-head">
+              <span class="kicker">Мэдээ, мэдээлэл</span>
+              <h2>Коллежийн сүүлийн үеийн үйл явдлууд</h2>
+            </div>
+            <div class="news-grid">
+              <div class="news-card">
+                <span class="tag">Элсэлт</span>
+                <h3>2026-2027 оны элсэлтийн бүрдүүлэх материалын жагсаалт гарлаа</h3>
+                <p>Шинээр элсэгчдэд зориулсан бичиг баримтын бүрдэл, хугацааны тухай дэлгэрэнгүй.</p>
+                <span class="date">2026 оны 8 сар</span>
+              </div>
+              <div class="news-card">
+                <span class="tag">Уралдаан</span>
+                <h3>Мэргэжлийн ур чадварын улсын уралдаанд амжилттай оролцлоо</h3>
+                <p>Манай оюутнууд механикч, цахилгаанчны төрөлд шагналт байр эзэллээ.</p>
+                <span class="date">2026 оны 5 сар</span>
+              </div>
+              <div class="news-card">
+                <span class="tag">Хамтын ажиллагаа</span>
+                <h3>Орон нутгийн аж ахуйн нэгжтэй дадлагын гэрээ байгууллаа</h3>
+                <p>Төгсөгчдийн ажлын байрны баталгааг сайжруулах чиглэлээр хамтран ажиллана.</p>
+                <span class="date">2026 оны 3 сар</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="holboo">
+          <div class="wrap contact">
+            <div class="contact-info">
+              <span class="kicker">Холбоо барих</span>
+              <h2>Бидэнтэй холбогдоорой</h2>
+              <p>Элсэлт, мэргэжлийн чиглэл, дадлагын талаар асуух зүйл байвал бидэнтэй холбогдоорой.</p>
+              <dl>
+                <dt>Хаяг</dt>
+                <dd>Мөрөн хот, Хөвсгөл аймаг, Монгол Улс</dd>
+                <dt>Утас</dt>
+                <dd>+976-XX-XXXXXX</dd>
+                <dt>И-мэйл</dt>
+                <dd>info@hovsgol-polytech.edu.mn</dd>
+                <dt>Ажиллах цаг</dt>
+                <dd>Даваа–Баасан, 09:00–18:00</dd>
+              </dl>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Илгээгдлээ ✓';">
+              <div class="field">
+                <label for="name">Нэр</label>
+                <input id="name" type="text" placeholder="Таны нэр" required>
+              </div>
+              <div class="field">
+                <label for="phone">Утасны дугаар</label>
+                <input id="phone" type="tel" placeholder="9911XXXX" required>
+              </div>
+              <div class="field">
+                <label for="msg">Мессеж</label>
+                <textarea id="msg" placeholder="Асуух зүйлээ бичнэ үү"></textarea>
+              </div>
+              <button type="submit">Хүсэлт илгээх</button>
+            </form>
+          </div>
+        </section>
+
+        <footer>
+          <div class="wrap foot-grid">
+            <div>
+              <div class="foot-brand">
+                <img src="logo.jpg" alt="лого">
+                <span>Хөвсгөл Политехник Коллеж</span>
+              </div>
+              <p style="color:#8B93AC; font-size:13.5px; max-width:38ch;">1973 оноос хойш Хөвсгөл аймагт мэргэжлийн боловсрол олгож буй сургалтын байгууллага.</p>
+            </div>
+            <div>
+              <h4>Сургалт</h4>
+              <ul>
+                <li><a href="#tuhai">Бидний тухай</a></li>
+                <li><a href="#mergejil">Мэргэжлүүд</a></li>
+                <li><a href="#amidral">Сургалтын орчин</a></li>
+                <li><a href="#suragch">Суралцагч</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Мэдээлэл</h4>
+              <ul>
+                <li><a href="#medee">Мэдээ мэдээлэл</a></li>
+                <li><a href="#holboo">Элсэлт</a></li>
+                <li><a href="#holboo">Холбоо барих</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Холбоо барих</h4>
+              <ul>
+                <li>Мөрөн хот, Хөвсгөл</li>
+                <li>+976-XX-XXXXXX</li>
+                <li>info@hovsgol-polytech.edu.mn</li>
+              </ul>
+            </div>
+          </div>
+          <div class="foot-bottom">
+            <span>© 2026 Хөвсгөл Политехник Коллеж</span>
+            <span>ОНООС · Байгуулагдсан 1973 он</span>
+          </div>
+        </footer>
+
+        </body>
+        </html>
